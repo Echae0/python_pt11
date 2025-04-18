@@ -27,8 +27,8 @@ palette = {
     '경남': '#A9A9A9', '제주': '#FFD700'
 }
 
-final_heart_df.info()
-final_heart_df.describe()
+# final_heart_df.info()
+# final_heart_df.describe()
 
 heart_occur_melted = heart_occur.melt(id_vars=['연도', '시도'], 
                                       value_vars=['전체 발생률'],
@@ -40,56 +40,56 @@ heart_heal_melted = heart_heal.melt(id_vars=['연도', '시도'],
                                       value_vars=['전체 뇌기능 회복률'],
                                       var_name='변수', value_name='값')
 
-# 급성심정지 생존율과 뇌기능 회복률의 상관관계 확인
-correlation1 = final_heart_df[['전체 생존율', '전체 뇌기능 회복률']].corr().iloc[0, 1]
-print(f"급성심장정지 생존율과 뇌기능 회복률의 상관계수: {correlation1:.3f}")
+# # 급성심정지 생존율과 뇌기능 회복률의 상관관계 확인
+# correlation1 = final_heart_df[['전체 생존율', '전체 뇌기능 회복률']].corr().iloc[0, 1]
+# print(f"급성심장정지 생존율과 뇌기능 회복률의 상관계수: {correlation1:.3f}")
 
-plt.figure(figsize=(6, 4))
+# plt.figure(figsize=(6, 4))
 
-sns.scatterplot(data=final_heart_df, x='전체 뇌기능 회복률', y='전체 생존율')
-plt.title(f'전체 생존율 vs 뇌기능 회복률 (상관계수: {correlation1:.3f})', fontsize=16)
-plt.xlabel('전체 뇌기능 회복률 (%)', fontsize=12)
-plt.ylabel('전체 생존율 (%)', fontsize=12)
-plt.show()
+# sns.scatterplot(data=final_heart_df, x='전체 뇌기능 회복률', y='전체 생존율')
+# plt.title(f'전체 생존율 vs 뇌기능 회복률 (상관계수: {correlation1:.3f})', fontsize=16)
+# plt.xlabel('전체 뇌기능 회복률 (%)', fontsize=12)
+# plt.ylabel('전체 생존율 (%)', fontsize=12)
+# plt.show()
 
-# 급성심정지 생존율과 발생률의 상관관계 확인
-correlation2 = final_heart_df[['전체 생존율', '전체 발생률']].corr().iloc[0, 1]
-print(f"급성심장정지 생존율과 발생률의 상관계수: {correlation2:.3f}")
+# # 급성심정지 생존율과 발생률의 상관관계 확인
+# correlation2 = final_heart_df[['전체 생존율', '전체 발생률']].corr().iloc[0, 1]
+# print(f"급성심장정지 생존율과 발생률의 상관계수: {correlation2:.3f}")
 
 
-plt.figure(figsize=(6, 4))
+# plt.figure(figsize=(6, 4))
 
-sns.scatterplot(data=final_heart_df, x='전체 발생률', y='전체 생존율')
-plt.title(f'전체 생존율 vs 전체 발생률 (상관계수: {correlation2:.3f})', fontsize=16)
-plt.xlabel('전체 발생률 (%)', fontsize=12)
-plt.ylabel('전체 생존율 (%)', fontsize=12)
-plt.show()
+# sns.scatterplot(data=final_heart_df, x='전체 발생률', y='전체 생존율')
+# plt.title(f'전체 생존율 vs 전체 발생률 (상관계수: {correlation2:.3f})', fontsize=16)
+# plt.xlabel('전체 발생률 (%)', fontsize=12)
+# plt.ylabel('전체 생존율 (%)', fontsize=12)
+# plt.show()
 
-# 병원 개수와 생존율의 상관관계 확인
-correlation3 = final_heart_df[['병원 합계', '전체 생존율']].corr().iloc[0, 1]
-print(f"병원합계와 생존율의 상관계수: {correlation3:.3f}")
+# # 병원 개수와 생존율의 상관관계 확인
+# correlation3 = final_heart_df[['병원 합계', '전체 생존율']].corr().iloc[0, 1]
+# print(f"병원합계와 생존율의 상관계수: {correlation3:.3f}")
 
-plt.figure(figsize=(6, 4))
+# plt.figure(figsize=(6, 4))
 
-sns.scatterplot(data=final_heart_df, x='병원 합계', y='전체 생존율')
-plt.title(f'병원 합계 vs 전체 발생률 (상관계수: {correlation3:.3f})', fontsize=16)
-plt.xlabel('병원 합계', fontsize=12)
-plt.ylabel('전체 생존율 (%)', fontsize=12)
-plt.show()
+# sns.scatterplot(data=final_heart_df, x='병원 합계', y='전체 생존율')
+# plt.title(f'병원 합계 vs 전체 발생률 (상관계수: {correlation3:.3f})', fontsize=16)
+# plt.xlabel('병원 합계', fontsize=12)
+# plt.ylabel('전체 생존율 (%)', fontsize=12)
+# plt.show()
 
-# 병원 개수와 뇌기능 회복률의 상관관계 확인
-correlation4 = final_heart_df[['병원 합계', '전체 뇌기능 회복률']].corr().iloc[0, 1]
-print(f"병원합계와 뇌기능 회복률의 상관계수: {correlation4:.3f}")
+# # 병원 개수와 뇌기능 회복률의 상관관계 확인
+# correlation4 = final_heart_df[['병원 합계', '전체 뇌기능 회복률']].corr().iloc[0, 1]
+# print(f"병원합계와 뇌기능 회복률의 상관계수: {correlation4:.3f}")
 
-plt.figure(figsize=(6, 4))
+# plt.figure(figsize=(6, 4))
 
-sns.scatterplot(data=final_heart_df, x='병원 합계', y='전체 뇌기능 회복률')
-plt.title(f'병원 합계 vs 전체 뇌기능 회복률 (상관계수: {correlation4:.3f})', fontsize=16)
-plt.xlabel('병원 합계', fontsize=12)
-plt.ylabel('전체 뇌기능 회복률', fontsize=12)
-plt.show()
+# sns.scatterplot(data=final_heart_df, x='병원 합계', y='전체 뇌기능 회복률')
+# plt.title(f'병원 합계 vs 전체 뇌기능 회복률 (상관계수: {correlation4:.3f})', fontsize=16)
+# plt.xlabel('병원 합계', fontsize=12)
+# plt.ylabel('전체 뇌기능 회복률', fontsize=12)
+# plt.show()
 
-def occur():
+def occur(data, palette):
     plt.figure(figsize=(15, 7))
 
     sns.lineplot(data=heart_occur_melted, x='연도', y='값', hue='시도', marker='o', palette= palette)
@@ -102,7 +102,7 @@ def occur():
     plt.tight_layout()
     st.pyplot(plt)
 
-def live():
+def live(data, palette):
     plt.figure(figsize=(15, 7))
 
     sns.lineplot(data=heart_live_melted, x='연도', y='값', hue='시도', marker='o', palette= palette)
@@ -115,7 +115,7 @@ def live():
     plt.tight_layout()
     st.pyplot(plt)
     
-def heal():
+def heal(data, palette):
     plt.figure(figsize=(15, 7))
 
     sns.lineplot(data=heart_heal_melted, x='연도', y='값', hue='시도', marker='o', palette= palette)
@@ -128,7 +128,7 @@ def heal():
     plt.tight_layout()
     st.pyplot(plt)
     
-def hospital():
+def hospital(data, palette):
     mean_df = final_heart_df.groupby('시도')['병원 합계'].mean().reset_index()
 
     colors = [palette[sido] for sido in mean_df['시도']]

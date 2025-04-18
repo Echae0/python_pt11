@@ -1,8 +1,16 @@
 import streamlit as st
 import pandas as pd
+from python_pt11_part3 import occur, live, heal, hospital
 
 st.set_page_config(page_title="급성심장정지", layout="wide")
 st.title("💓 급성심장정지")
+
+palette = {
+    '서울': '#E6194B', '부산': '#3CB44B', '대구': '#FFE119', '인천': '#0082C8', '광주': '#F58231',
+    '대전': '#911EB4', '울산': '#46F0F0', '세종': '#F032E6', '경기': '#D2F53C', '강원': '#FABEBE',
+    '충북': '#008080', '충남': '#E6BEFF', '전북': '#AA6E28', '전남': '#800000', '경북': '#000000',
+    '경남': '#A9A9A9', '제주': '#FFD700'
+}
 
 @st.cache_data
 def load_data():
@@ -112,11 +120,14 @@ with tab1:
 with tab2:
     st.subheader("발생률")
     display_dataframe(st.session_state.filtered["occur"])
+    occur(occur,palette)
 
 with tab3:
     st.subheader("생존률")
     display_dataframe(st.session_state.filtered["live"])
+    live(live,palette)
 
 with tab4:
     st.subheader("회복률")
     display_dataframe(st.session_state.filtered["heal"])
+    heal(heal,palette)
