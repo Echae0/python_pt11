@@ -96,6 +96,7 @@ def predict_survival_rate(occur_rate, brain_heal_rate, hospital_count):
     print("--------------------------")
     print(f"Random Forest 예측 생존율: {pred_rf:.2f}%")
     print(f"Gradient Boosting 예측 생존율: {pred_gb:.2f}%")
+    return pred_rf, pred_gb
 
 predict_survival_rate(47.3, 7.2, 286)
     

@@ -22,12 +22,13 @@ if st.button("예측하기"):
             hospital_count = float(hospital_count_input)
 
             # 예측 함수 호출
-            pred_rf, pred_gb = predict_survival_rate(occur_rate, brain_heal_rate, hospital_count, rf_model, gb_model)
-
+            pred_rf, pred_gb = predict_survival_rate(occur_rate, brain_heal_rate, hospital_count)
+            
             if pred_rf is not None and pred_gb is not None:
                 # 예측 결과 출력
                 st.write(f"Random Forest 예측 생존율: {pred_rf:.2f}%")
                 st.write(f"Gradient Boosting 예측 생존율: {pred_gb:.2f}%")
+                
             else:
                 st.error("예측을 할 수 없습니다. 모델에 문제가 있을 수 있습니다.")
         except ValueError:
