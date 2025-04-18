@@ -6,6 +6,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 import seaborn as sns
+import streamlit as st 
 
 
 final_heart_df = pd.read_csv('final_heart_df.csv', encoding='utf-8-sig')
@@ -88,59 +89,63 @@ plt.xlabel('병원 합계', fontsize=12)
 plt.ylabel('전체 뇌기능 회복률', fontsize=12)
 plt.show()
 
-plt.figure(figsize=(15, 7))
+def occur():
+    plt.figure(figsize=(15, 7))
 
-sns.lineplot(data=heart_occur_melted, x='연도', y='값', hue='시도', marker='o', palette= palette)
+    sns.lineplot(data=heart_occur_melted, x='연도', y='값', hue='시도', marker='o', palette= palette)
 
-plt.title('연도 및 시도별 급성심장정지 전체 발생률 추세 (2016-2019)', fontsize=20)
-plt.xlabel('연도', fontsize=12)
-plt.ylabel('전체 발생률 (%)', fontsize=12)
-plt.xticks([2016, 2017, 2018, 2019])
-plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-plt.tight_layout()
-plt.show()
+    plt.title('연도 및 시도별 급성심장정지 전체 발생률 추세 (2016-2019)', fontsize=20)
+    plt.xlabel('연도', fontsize=12)
+    plt.ylabel('전체 발생률 (%)', fontsize=12)
+    plt.xticks([2016, 2017, 2018, 2019])
+    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+    plt.tight_layout()
+    st.pyplot(plt)
 
-plt.figure(figsize=(15, 7))
+def live():
+    plt.figure(figsize=(15, 7))
 
-sns.lineplot(data=heart_live_melted, x='연도', y='값', hue='시도', marker='o', palette= palette)
+    sns.lineplot(data=heart_live_melted, x='연도', y='값', hue='시도', marker='o', palette= palette)
 
-plt.title('연도 및 시도별 급성심장정지 전체 생존율 추세 (2016-2019)', fontsize=20)
-plt.xlabel('연도', fontsize=12)
-plt.ylabel('전체 생존율 (%)', fontsize=12)
-plt.xticks([2016, 2017, 2018, 2019])
-plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-plt.tight_layout()
-plt.show()
+    plt.title('연도 및 시도별 급성심장정지 전체 생존율 추세 (2016-2019)', fontsize=20)
+    plt.xlabel('연도', fontsize=12)
+    plt.ylabel('전체 생존율 (%)', fontsize=12)
+    plt.xticks([2016, 2017, 2018, 2019])
+    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+    plt.tight_layout()
+    st.pyplot(plt)
+    
+def heal():
+    plt.figure(figsize=(15, 7))
 
-plt.figure(figsize=(15, 7))
+    sns.lineplot(data=heart_heal_melted, x='연도', y='값', hue='시도', marker='o', palette= palette)
 
-sns.lineplot(data=heart_heal_melted, x='연도', y='값', hue='시도', marker='o', palette= palette)
+    plt.title('연도 및 시도별 급성심장정지 전체 뇌기능 회복률 추세 (2016-2019)', fontsize=20)
+    plt.xlabel('연도', fontsize=12)
+    plt.ylabel('전체 뇌기능 회복률 (%)', fontsize=12)
+    plt.xticks([2016, 2017, 2018, 2019])
+    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+    plt.tight_layout()
+    st.pyplot(plt)
+    
+def hospital():
+    mean_df = final_heart_df.groupby('시도')['병원 합계'].mean().reset_index()
 
-plt.title('연도 및 시도별 급성심장정지 전체 뇌기능 회복률 추세 (2016-2019)', fontsize=20)
-plt.xlabel('연도', fontsize=12)
-plt.ylabel('전체 뇌기능 회복률 (%)', fontsize=12)
-plt.xticks([2016, 2017, 2018, 2019])
-plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-plt.tight_layout()
-plt.show()
+    colors = [palette[sido] for sido in mean_df['시도']]
 
-mean_df = final_heart_df.groupby('시도')['병원 합계'].mean().reset_index()
+    # 시도별 병원 평균 막대그래프
+    plt.figure(figsize=(12, 6))
+    bars = plt.bar(mean_df['시도'], mean_df['병원 합계'], color=colors)
 
-colors = [palette[sido] for sido in mean_df['시도']]
+    plt.title('연도별 평균 지역별 병원 수', fontsize=14)
+    plt.xlabel('시도', fontsize=12)
+    plt.ylabel('병원 수 평균', fontsize=12)
 
-# 시도별 병원 평균 막대그래프
-plt.figure(figsize=(12, 6))
-bars = plt.bar(mean_df['시도'], mean_df['병원 합계'], color=colors)
+    # 값 라벨 위에 표시
+    for bar in bars:
+        yval = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width()/2, yval + 1, f'{yval:.0f}', ha='center', va='bottom', fontsize=10)
 
-plt.title('연도별 평균 지역별 병원 수', fontsize=14)
-plt.xlabel('시도', fontsize=12)
-plt.ylabel('병원 수 평균', fontsize=12)
-
-# 값 라벨 위에 표시
-for bar in bars:
-    yval = bar.get_height()
-    plt.text(bar.get_x() + bar.get_width()/2, yval + 1, f'{yval:.0f}', ha='center', va='bottom', fontsize=10)
-
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    st.pyplot(plt)
