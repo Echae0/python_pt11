@@ -119,3 +119,8 @@ final_heart_df = heart_live.merge(heart_heal, on=['연도', '시도'], how='left
     
 # 전체 병원 개수 컬럼 생성
 final_heart_df['병원 합계'] = final_heart_df['종합병원'] + final_heart_df['일반병원']
+
+final_heart_df.to_csv('final_heart_df.csv', index=False, encoding='utf-8-sig')
+heart_occur.to_csv('heart_occur.csv', index=False, encoding='utf-8-sig')
+heart_live.to_csv('heart_live.csv', index=False, encoding='utf-8-sig')
+heart_heal.to_csv('heart_heal.csv', index=False, encoding='utf-8-sig')

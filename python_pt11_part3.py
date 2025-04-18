@@ -6,7 +6,12 @@ import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 import seaborn as sns
-from python_pt11_part2 import final_heart_df, heart_live, heart_heal, heart_occur 
+
+
+final_heart_df = pd.read_csv('final_heart_df.csv', encoding='utf-8-sig')
+heart_occur = pd.read_csv('heart_occur.csv', encoding='utf-8-sig')
+heart_live = pd.read_csv('heart_live.csv', encoding='utf-8-sig')
+heart_heal = pd.read_csv('heart_heal.csv', encoding='utf-8-sig')
 
 [ (font.name, font.fname) for font in fm.fontManager.ttflist if 'Mal' in font.name ]
 
