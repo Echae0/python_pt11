@@ -89,7 +89,11 @@ def predict_survival_rate(occur_rate, brain_heal_rate, hospital_count):
     
     pred_rf = rf_model.predict(predict_df)[0]
     pred_gb = gb_model.predict(predict_df)[0]
-
+    
+    print(f"입력 받은 전체 발생률: {occur_rate}")
+    print(f"입력 받은 전체 뇌기능 회복률: {brain_heal_rate}")
+    print(f"입력 받은 병원 합계: {hospital_count}")
+    print("--------------------------")
     print(f"Random Forest 예측 생존율: {pred_rf:.2f}%")
     print(f"Gradient Boosting 예측 생존율: {pred_gb:.2f}%")
 
