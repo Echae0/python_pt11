@@ -8,6 +8,12 @@ import matplotlib.font_manager as fm
 import seaborn as sns
 from python_pt11_part2 import final_heart_df, heart_live, heart_heal, heart_occur 
 
+[ (font.name, font.fname) for font in fm.fontManager.ttflist if 'Mal' in font.name ]
+
+font_path = 'C:\\Windows\\Fonts\\malgun.ttf'
+font_prop = fm.FontProperties(fname=font_path).get_name()
+matplotlib.rc('font', family=font_prop)
+
 final_heart_df.info()
 final_heart_df.describe()
 

@@ -9,11 +9,6 @@ import seaborn as sns
 
 load_dotenv()
 
-[ (font.name, font.fname) for font in fm.fontManager.ttflist if 'Mal' in font.name ]
-
-font_path = 'C:\\Windows\\Fonts\\malgun.ttf'
-font_prop = fm.FontProperties(fname=font_path).get_name()
-
 # url과 파라미터 설정 + 결과 확인
 url = 'http://apis.data.go.kr/1352000/ODMS_STAT_09/callStat09Api'
 key = os.getenv("SERVICE_KEY")
