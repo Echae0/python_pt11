@@ -4,8 +4,8 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import cross_val_score
 from sklearn.ensemble import GradientBoostingRegressor
 import pandas as pd
-from python_pt11_part3 import final_heart_df
 
+final_heart_df = pd.read_csv('final_heart_df.csv', encoding='utf-8-sig')
 # RandomForest Model
 x = final_heart_df[['전체 발생률', '전체 뇌기능 회복률', '병원 합계']]
 y = final_heart_df['전체 생존율']
@@ -85,14 +85,14 @@ def predict_survival_rate(occur_rate, brain_heal_rate, hospital_count):
         '전체 뇌기능 회복률': [brain_heal_rate],
         '병원 합계': [hospital_count] })
     
-    display(predict_df)
+    print(predict_df)
     
     pred_rf = rf_model.predict(predict_df)[0]
     pred_gb = gb_model.predict(predict_df)[0]
 
     print(f"Random Forest 예측 생존율: {pred_rf:.2f}%")
     print(f"Gradient Boosting 예측 생존율: {pred_gb:.2f}%")
+
+predict_survival_rate(47.3, 7.2, 286)
     
-    predict_survival_rate(47.3, 7.2, 286)
-    
-    predict_survival_rate(53.6, 5.2, 121)
+predict_survival_rate(53.6, 5.2, 121)
