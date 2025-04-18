@@ -19,6 +19,13 @@ font_path = 'C:\\Windows\\Fonts\\malgun.ttf'
 font_prop = fm.FontProperties(fname=font_path).get_name()
 matplotlib.rc('font', family=font_prop)
 
+palette = {
+    '서울': '#E6194B', '부산': '#3CB44B', '대구': '#FFE119', '인천': '#0082C8', '광주': '#F58231',
+    '대전': '#911EB4', '울산': '#46F0F0', '세종': '#F032E6', '경기': '#D2F53C', '강원': '#FABEBE',
+    '충북': '#008080', '충남': '#E6BEFF', '전북': '#AA6E28', '전남': '#800000', '경북': '#000000',
+    '경남': '#A9A9A9', '제주': '#FFD700'
+}
+
 final_heart_df.info()
 final_heart_df.describe()
 
@@ -83,13 +90,6 @@ plt.show()
 
 plt.figure(figsize=(15, 7))
 
-palette = {
-    '서울': '#E6194B', '부산': '#3CB44B', '대구': '#FFE119', '인천': '#0082C8', '광주': '#F58231',
-    '대전': '#911EB4', '울산': '#46F0F0', '세종': '#F032E6', '경기': '#D2F53C', '강원': '#FABEBE',
-    '충북': '#008080', '충남': '#E6BEFF', '전북': '#AA6E28', '전남': '#800000', '경북': '#000000',
-    '경남': '#A9A9A9', '제주': '#FFD700'
-}
-
 sns.lineplot(data=heart_occur_melted, x='연도', y='값', hue='시도', marker='o', palette= palette)
 
 plt.title('연도 및 시도별 급성심장정지 전체 발생률 추세 (2016-2019)', fontsize=20)
@@ -101,13 +101,6 @@ plt.tight_layout()
 plt.show()
 
 plt.figure(figsize=(15, 7))
-
-palette = {
-    '서울': '#E6194B', '부산': '#3CB44B', '대구': '#FFE119', '인천': '#0082C8', '광주': '#F58231',
-    '대전': '#911EB4', '울산': '#46F0F0', '세종': '#F032E6', '경기': '#D2F53C', '강원': '#FABEBE',
-    '충북': '#008080', '충남': '#E6BEFF', '전북': '#AA6E28', '전남': '#800000', '경북': '#000000',
-    '경남': '#A9A9A9', '제주': '#FFD700'
-}
 
 sns.lineplot(data=heart_live_melted, x='연도', y='값', hue='시도', marker='o', palette= palette)
 
@@ -121,13 +114,6 @@ plt.show()
 
 plt.figure(figsize=(15, 7))
 
-palette = {
-    '서울': '#E6194B', '부산': '#3CB44B', '대구': '#FFE119', '인천': '#0082C8', '광주': '#F58231',
-    '대전': '#911EB4', '울산': '#46F0F0', '세종': '#F032E6', '경기': '#D2F53C', '강원': '#FABEBE',
-    '충북': '#008080', '충남': '#E6BEFF', '전북': '#AA6E28', '전남': '#800000', '경북': '#000000',
-    '경남': '#A9A9A9', '제주': '#FFD700'
-}
-
 sns.lineplot(data=heart_heal_melted, x='연도', y='값', hue='시도', marker='o', palette= palette)
 
 plt.title('연도 및 시도별 급성심장정지 전체 뇌기능 회복률 추세 (2016-2019)', fontsize=20)
@@ -140,18 +126,7 @@ plt.show()
 
 mean_df = final_heart_df.groupby('시도')['병원 합계'].mean().reset_index()
 
-region_colors = {
-    '서울': '#E6194B', '부산': '#3CB44B', '대구': '#FFE119', '인천': '#0082C8', '광주': '#F58231',
-    '대전': '#911EB4', '울산': '#46F0F0', '세종': '#F032E6', '경기': '#D2F53C', '강원': '#FABEBE',
-    '충북': '#008080', '충남': '#E6BEFF', '전북': '#AA6E28', '전남': '#800000', '경북': '#000000',
-    '경남': '#A9A9A9', '제주': '#FFD700'
-}
-colors = [region_colors[sido] for sido in mean_df['시도']]
-
-# 한글 깨짐 방지 (폰트 설정)
-plt.rcParams['font.family'] = 'Malgun Gothic'  # Windows인 경우
-# plt.rcParams['font.family'] = 'AppleGothic'  # macOS인 경우
-plt.rcParams['axes.unicode_minus'] = False
+colors = [palette[sido] for sido in mean_df['시도']]
 
 # 시도별 병원 평균 막대그래프
 plt.figure(figsize=(12, 6))
