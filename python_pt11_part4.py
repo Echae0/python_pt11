@@ -1,5 +1,3 @@
-# %% [markdown]
-# #### 머신러닝 모델 생성 및 비교
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
@@ -8,7 +6,7 @@ from sklearn.ensemble import GradientBoostingRegressor
 import pandas as pd
 from python_pt11_part3 import final_heart_df
 
-# %%
+
 # RandomForest Model
 x = final_heart_df[['전체 발생률', '전체 뇌기능 회복률', '병원 합계']]
 y = final_heart_df['전체 생존율']
@@ -27,13 +25,11 @@ mse = mean_squared_error(y_test, y_pred)
 print(f"R²: {r2:.3f}")
 print(f'Mean Squared Error: {mse:.3f}')
 
-# %%
 # RandomForest 모델 교차검증
 scores = cross_val_score(model, x, y, cv=5, scoring='r2')
 print(scores)
 print(f'R² 평균: {scores.mean():.3f}, 표준편차: {scores.std():.3f}')
 
-# %%
 # Gradient Boosting Model
 
 # 모델 학습
@@ -50,18 +46,15 @@ gb_r2 = r2_score(y_test, gb_pred)
 print(f"R²: {gb_r2:.3f}")
 print(f"Mean Squared Error: {gb_mse:.3f}")
 
-# %%
 # Gradient Boosting 모델 교차검증
 scores2 = cross_val_score(gb_model, x, y, cv=5, scoring='r2')
 print(scores2)
 print(f'R² 평균: {scores2.mean():.3f}, 표준편차: {scores2.std():.3f}')
 
-# %%
 sample_row = final_heart_df[final_heart_df['시도'] == '서울']
 predicted_data = sample_row[['연도', '시도', '전체 생존율', '전체 발생률', '전체 뇌기능 회복률', '병원 합계']]
 predicted_data
 
-# %%
 new_data = pd.DataFrame({
     '전체 발생률': [47.3],
     '전체 뇌기능 회복률': [7.2],
@@ -72,12 +65,9 @@ new_data = pd.DataFrame({
 predicted_survival = model.predict(new_data)
 print(f"예측된 전체 생존율: {predicted_survival[0]:.2f}")
 
-# %%
 # Gradient Boosting Model 예측
 predicted_survival = gb_model.predict(new_data)
 print(f"예측된 전체 생존율: {predicted_survival[0]:.2f}")
-
-# %%
 
 x = final_heart_df[['연도']] 
 y = final_heart_df['전체 생존율']  
@@ -98,7 +88,7 @@ r2 = r2_score(y_test, y_pred)
 print(f"R²: {r2:.3f}")
 
 
-# %%
+
 new_data = pd.DataFrame({'연도': [2020]})
 predicted_value = model.predict(new_data)
 
