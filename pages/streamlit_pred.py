@@ -3,7 +3,7 @@
 import streamlit as st
 import pandas as pd
 from dotenv import load_dotenv
-# streamlit run streamlit_pred_test.py
+# streamlit run streamlit_pred.py
 import os
 import numpy as np
 from python_pt11_part4 import predict_survival_rate, rf_model, gb_model, importance, plot
