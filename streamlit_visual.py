@@ -1,3 +1,5 @@
+# 💓 급성심장정지
+
 import streamlit as st
 import pandas as pd
 from python_pt11_part3 import occur, live, heal, hospital
