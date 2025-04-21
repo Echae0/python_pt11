@@ -137,7 +137,7 @@ def hospital(data, palette):
     plt.figure(figsize=(12, 6))
     bars = plt.bar(mean_df['시도'], mean_df['병원 합계'], color=colors)
 
-    plt.title('연도별 평균 지역별 병원 수', fontsize=14)
+    plt.title('지역별 평균 병원 수 (2016-2019)', fontsize=14)
     plt.xlabel('시도', fontsize=12)
     plt.ylabel('병원 수 평균', fontsize=12)
 
