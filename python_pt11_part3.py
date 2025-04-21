@@ -31,13 +31,13 @@ palette = {
 # final_heart_df.describe()
 
 heart_occur_melted = heart_occur.melt(id_vars=['연도', '시도'], 
-                                      value_vars=['전체 발생률'],
+                                      value_vars=['전체 표준화 발생률'],
                                       var_name='변수', value_name='값')
 heart_live_melted = heart_live.melt(id_vars=['연도', '시도'], 
-                                      value_vars=['전체 생존율'],
+                                      value_vars=['전체 표준화 생존률'],
                                       var_name='변수', value_name='값')
 heart_heal_melted = heart_heal.melt(id_vars=['연도', '시도'], 
-                                      value_vars=['전체 뇌기능 회복률'],
+                                      value_vars=['전체 표준화 뇌기능 회복률'],
                                       var_name='변수', value_name='값')
 
 # # 급성심정지 생존율과 뇌기능 회복률의 상관관계 확인
@@ -94,7 +94,7 @@ def occur(data, palette):
 
     sns.lineplot(data=heart_occur_melted, x='연도', y='값', hue='시도', marker='o', palette= palette)
 
-    plt.title('연도 및 시도별 급성심장정지 전체 발생률 추세 (2016-2019)', fontsize=20)
+    plt.title('연도 및 시도별 급성심장정지 전체 표준화 발생률 추세 (2016-2019)', fontsize=20)
     plt.xlabel('연도', fontsize=12)
     plt.ylabel('전체 발생률 (%)', fontsize=12)
     plt.xticks([2016, 2017, 2018, 2019])
@@ -107,7 +107,7 @@ def live(data, palette):
 
     sns.lineplot(data=heart_live_melted, x='연도', y='값', hue='시도', marker='o', palette= palette)
 
-    plt.title('연도 및 시도별 급성심장정지 전체 생존율 추세 (2016-2019)', fontsize=20)
+    plt.title('연도 및 시도별 급성심장정지 전체 표준화 생존률 추세 (2016-2019)', fontsize=20)
     plt.xlabel('연도', fontsize=12)
     plt.ylabel('전체 생존율 (%)', fontsize=12)
     plt.xticks([2016, 2017, 2018, 2019])
@@ -120,7 +120,7 @@ def heal(data, palette):
 
     sns.lineplot(data=heart_heal_melted, x='연도', y='값', hue='시도', marker='o', palette= palette)
 
-    plt.title('연도 및 시도별 급성심장정지 전체 뇌기능 회복률 추세 (2016-2019)', fontsize=20)
+    plt.title('연도 및 시도별 급성심장정지 전체 표준화 뇌기능 회복률 추세 (2016-2019)', fontsize=20)
     plt.xlabel('연도', fontsize=12)
     plt.ylabel('전체 뇌기능 회복률 (%)', fontsize=12)
     plt.xticks([2016, 2017, 2018, 2019])
